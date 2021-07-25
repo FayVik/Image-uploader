@@ -119,11 +119,9 @@ function Dahboard() {
 			uploadTask.on(
 				'state_changed',
 				(snapShot) => {
-					console.log(snapShot);
 					setLoading(true);
 				},
 				(err) => {
-					console.log(err);
 					setLoading(false);
 				},
 				// eslint-disable-next-line no-loop-func
@@ -150,7 +148,7 @@ function Dahboard() {
 	};
 
 	const handleChange = (e) => {
-		console.log(e.target.files);
+		setLoading(true);
 		const metadata = {
 			contentType: e.target.files[0].type,
 		};
@@ -160,10 +158,10 @@ function Dahboard() {
 		uploadTask.on(
 			'state_changed',
 			(snapShot) => {
-				console.log(snapShot);
+				setLoading(true);
 			},
 			(err) => {
-				console.log(err);
+				setLoading(false);
 			},
 			// eslint-disable-next-line no-loop-func
 			() => {
@@ -172,7 +170,7 @@ function Dahboard() {
 					.child(e.target.files[0].name)
 					.getDownloadURL()
 					.then((BaseUrl) => {
-						console.log(BaseUrl);
+						setLoading(false);
 						setImageAsUrl(BaseUrl);
 					});
 			}

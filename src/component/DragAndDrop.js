@@ -53,11 +53,9 @@ function DragAndDrop(props) {
 		e.stopPropagation();
 		let files = [...e.dataTransfer.files];
 		if (files && files.length > 0) {
-			console.log(files);
 			props.handleDrop(files);
 			e.dataTransfer.clearData();
 		}
-		console.log(e.dataTransfer.getData('file'));
 	};
 
 	return (
