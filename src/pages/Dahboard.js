@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { storage } from '../firebase';
 import { VscCheck } from 'react-icons/vsc';
 import '../App.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -265,9 +266,10 @@ function Dahboard() {
 									width: '100%',
 									borderRadius: '10px',
 									marginBottom: '20px',
+									background: 'rgb(230, 230, 230)',
 								}}
 							>
-								<img
+								<LazyLoadImage
 									style={{
 										height: '50vh',
 										width: '100%',
@@ -277,7 +279,6 @@ function Dahboard() {
 									src={imageAsUrl}
 									alt='logo'
 								/>
-								;
 							</div>
 							<div className={classes.copyText}>
 								<input
