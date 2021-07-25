@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
 
 const useStyles = makeStyles({
 	root: {
@@ -27,11 +28,10 @@ function DragAndDrop(props) {
 
 	const classes = useStyles();
 
-	const [drag, setDrag] = useState(false);
-
 	const handleDrag = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
+		e.dataTransfer.dropEffect = 'copy';
 	};
 
 	const handleDragIn = (e) => {
@@ -39,7 +39,6 @@ function DragAndDrop(props) {
 		e.stopPropagation();
 		dragCounter++;
 		if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-			setDrag(true);
 		}
 	};
 	const handleDragOut = (e) => {
@@ -47,19 +46,18 @@ function DragAndDrop(props) {
 		e.stopPropagation();
 		dragCounter--;
 		if (dragCounter === 0) {
-			setDrag(false);
 		}
 	};
 	const handleDrop = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
-		setDrag(false);
-		console.log(e.dataTransfer.files);
-		if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-			props.handleDrop(e.dataTransfer.files);
+		let files = [...e.dataTransfer.files];
+		if (files && files.length > 0) {
+			console.log(files);
+			props.handleDrop(files);
 			e.dataTransfer.clearData();
-			dragCounter = 0;
 		}
+		console.log(e.dataTransfer.getData('file'));
 	};
 
 	return (
@@ -67,39 +65,15 @@ function DragAndDrop(props) {
 			<CardContent>
 				<div
 					style={{ display: 'inline-block', position: 'relative' }}
-					onDrop={handleDrop}
-					onDragEnter={handleDragIn}
-					onDragOver={handleDrag}
-					onDragLeave={handleDragOut}
+					onDrop={(e) => handleDrop(e)}
+					onDragEnter={(e) => handleDragIn(e)}
+					onDragOver={(e) => handleDrag(e)}
+					onDragLeave={(e) => handleDragOut(e)}
 					accept='image/x-png, image/jpeg'
 				>
-					{drag && (
-						<div
-							style={{
-								backgroundColor: 'rgba(255, 255, 255, .78)',
-								position: 'absolute',
-								top: 0,
-								bottom: 0,
-								left: 0,
-								right: 0,
-								zIndex: 9999,
-							}}
-						>
-							<div
-								style={{
-									position: 'absolute',
-									top: '50%',
-									right: 0,
-									left: 0,
-									textAlign: 'center',
-									color: 'grey',
-									fontSize: 36,
-								}}
-							>
-								<div>drop here :)</div>
-							</div>
-						</div>
-					)}
+					<AiOutlineCloudUpload size={80} />
+					<p>Drag files here to upload</p>
+
 					{props.children}
 				</div>
 			</CardContent>

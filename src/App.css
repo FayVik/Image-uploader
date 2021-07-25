@@ -1,7 +1,31 @@
 .App {
-  width: 100%;
-  height: 100vh;
-  background: #eee;
-  margin: 0;
-  padding: 0;
+	width: 100%;
+	height: 100vh;
+	background: #eee;
+	margin: 0;
+	padding: 0;
+}
+
+.Applogo {
+	width: 100%;
+	height: 10px;
+	background-color: rgb(230, 230, 230);
+	font-weight: bold;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+.inner {
+  position: relative;
+  animation: mymove 2s infinite;
+	background: #2F80ED;
+  width: 40%;
+  height: 10px;
+  border-radius: 20px;
+  animation-timing-function: ease;
+}
+
+@keyframes mymove {
+  from {left: 10px;}
+  to {left: 300px;}
 }
