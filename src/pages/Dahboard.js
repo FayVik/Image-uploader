@@ -8,7 +8,6 @@ import DragAndDrop from '../component/DragAndDrop';
 import Button from '@material-ui/core/Button';
 import { storage } from '../firebase';
 import { VscCheck } from 'react-icons/vsc';
-import logo from '../logo.svg';
 import '../App.css';
 
 const useStyles = makeStyles((theme) => ({
