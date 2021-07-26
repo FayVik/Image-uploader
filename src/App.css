@@ -17,15 +17,18 @@
 }
 .inner {
   position: relative;
-  animation: mymove 2s infinite;
+  animation: mymove 2s linear infinite;
 	background: #2F80ED;
   width: 40%;
   height: 10px;
   border-radius: 20px;
-  animation-timing-function: ease;
 }
 
 @keyframes mymove {
-  from {left: 10px;}
-  to {left: 300px;}
+  0% {
+        left: -1%;
+      }
+      100% {
+        left: 60%;
+      }
 }
