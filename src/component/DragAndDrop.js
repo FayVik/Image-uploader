@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { AiOutlineCloudUpload } from 'react-icons/ai';
+import img from '../image.svg';
 
 const useStyles = makeStyles({
 	root: {
@@ -69,8 +69,8 @@ function DragAndDrop(props) {
 					onDragLeave={(e) => handleDragOut(e)}
 					accept='image/x-png, image/jpeg'
 				>
-					<AiOutlineCloudUpload size={80} />
-					<p>Drag files here to upload</p>
+					<img src={img} alt='drag' size={80} />
+					<p style={{ color: ' #4F4F4F' }}>Drag files here to upload</p>
 
 					{props.children}
 				</div>
