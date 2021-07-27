@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '16px',
 	},
 	icon: {
-		color: 'red',
+		color: '#EB5757',
 	},
 }));
 
