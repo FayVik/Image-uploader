@@ -10,12 +10,13 @@ import { storage } from '../firebase';
 import { VscCheck } from 'react-icons/vsc';
 import '../App.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Footer from '../component/Footer';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 		width: '100%',
-		height: '100vh',
+		height: '90vh',
 		margin: '0',
 		padding: '0',
 	},
@@ -23,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
-		minHeight: '68vh',
 	},
 	typo: {
 		fontSize: '20px',
@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		padding: '0 2px',
+		marginBottom: '20px',
 	},
 	inputText: {
 		width: '82%',
@@ -178,125 +179,145 @@ function Dahboard() {
 		);
 	};
 
-	return imageAsUrl === '' ? (
+	return (
 		<div>
-			<Grid
-				className={classes.root}
-				container
-				alignItems='center'
-				justifyContent='center'
-			>
-				<Grid item xs={12} sm={6} md={6} lg={5}>
-					{loading === false ? (
-						<Paper className={classes.paper}>
-							<Typography variant='h1' className={classes.typo} component='h2'>
-								Upload your image
-							</Typography>
-							<Typography
-								variant='body2'
-								className={classes.typoType}
-								component='p'
-							>
-								File should be jpeg, Png, ....
-							</Typography>
-							<CardContent>
-								<DragAndDrop handleDrop={(files) => handleDrop(files)}>
-									<div style={{ height: 300, width: 250 }}></div>
-								</DragAndDrop>
-							</CardContent>
-							<Typography variant='body2' component='p'>
-								Or
-							</Typography>
-							<input
-								accept='image/*'
-								className={classes.input}
-								id='contained-button-file'
-								multiple
-								type='file'
-								onChange={handleChange}
-							/>
-							<label htmlFor='contained-button-file'>
-								<Button
-									variant='contained'
-									className={classes.button}
-									component='span'
-								>
-									Choose a file
-								</Button>
-							</label>
-						</Paper>
-					) : (
-						<Paper>
-							<CardContent>
+			{imageAsUrl === '' ? (
+				<div>
+					<Grid
+						className={classes.root}
+						container
+						alignItems='center'
+						justifyContent='center'
+					>
+						<Grid item xs={12} sm={10} md={10} lg={5}>
+							{loading === false ? (
+								<Paper className={classes.paper}>
+									<Typography
+										variant='h1'
+										className={classes.typo}
+										component='h2'
+									>
+										Upload your image
+									</Typography>
+									<Typography
+										variant='body2'
+										className={classes.typoType}
+										component='p'
+									>
+										File should be jpeg, Png, ....
+									</Typography>
+									<CardContent>
+										<DragAndDrop handleDrop={(files) => handleDrop(files)}>
+											<div style={{ height: 300, width: 250 }}></div>
+										</DragAndDrop>
+									</CardContent>
+									<Typography variant='body2' component='p'>
+										Or
+									</Typography>
+									<div style={{ marginBottom: '20px' }}>
+										<input
+											accept='image/*'
+											className={classes.input}
+											id='contained-button-file'
+											multiple
+											type='file'
+											onChange={handleChange}
+										/>
+										<label htmlFor='contained-button-file'>
+											<Button
+												variant='contained'
+												className={classes.button}
+												component='span'
+											>
+												Choose a file
+											</Button>
+										</label>
+									</div>
+								</Paper>
+							) : (
+								<Paper>
+									<CardContent>
+										<Typography
+											variant='h1'
+											className={classes.loading}
+											component='h2'
+										>
+											Uploading...
+										</Typography>
+										<div className='Applogo'>
+											<div className='inner'></div>
+										</div>
+									</CardContent>
+								</Paper>
+							)}
+						</Grid>
+					</Grid>
+				</div>
+			) : (
+				<div>
+					<Grid
+						className={classes.root}
+						container
+						alignItems='center'
+						justifyContent='center'
+					>
+						<Grid item xs={12} sm={6} md={6} lg={5}>
+							<Paper className={classes.paper}>
+								<div>
+									<VscCheck size={36} className={classes.status} />
+								</div>
 								<Typography
 									variant='h1'
-									className={classes.loading}
+									className={classes.suce}
 									component='h2'
 								>
-									Uploading...
+									Uploaded Successfully!
 								</Typography>
-								<div className='Applogo'>
-									<div className='inner'></div>
-								</div>
-							</CardContent>
-						</Paper>
-					)}
-				</Grid>
-			</Grid>
-		</div>
-	) : (
-		<div>
-			<Grid
-				className={classes.root}
-				container
-				alignItems='center'
-				justifyContent='center'
-			>
+								<CardContent>
+									<div
+										style={{
+											width: '100%',
+											borderRadius: '10px',
+											marginBottom: '20px',
+											background: 'rgb(230, 230, 230)',
+										}}
+									>
+										<LazyLoadImage
+											style={{
+												height: '50vh',
+												width: '100%',
+												borderRadius: '10px',
+												objectFit: 'cover',
+											}}
+											src={imageAsUrl}
+											alt='logo'
+										/>
+									</div>
+									<div className={classes.copyText}>
+										<input
+											type='text'
+											id='myInput'
+											className={classes.inputText}
+											defaultValue={imageAsUrl}
+										/>
+										<button
+											className={classes.btn}
+											type='click'
+											onClick={() => myFunction()}
+										>
+											Copy text
+										</button>
+									</div>
+								</CardContent>
+							</Paper>
+						</Grid>
+					</Grid>
+				</div>
+			)}
+			;
+			<Grid container alignItems='center' justifyContent='center'>
 				<Grid item xs={12} sm={6} md={6} lg={5}>
-					<Paper className={classes.paper}>
-						<div>
-							<VscCheck size={36} className={classes.status} />
-						</div>
-						<Typography variant='h1' className={classes.suce} component='h2'>
-							Uploaded Successfully!
-						</Typography>
-						<CardContent>
-							<div
-								style={{
-									width: '100%',
-									borderRadius: '10px',
-									marginBottom: '20px',
-									background: 'rgb(230, 230, 230)',
-								}}
-							>
-								<LazyLoadImage
-									style={{
-										height: '50vh',
-										width: '100%',
-										borderRadius: '10px',
-										objectFit: 'cover',
-									}}
-									src={imageAsUrl}
-									alt='logo'
-								/>
-							</div>
-							<div className={classes.copyText}>
-								<input
-									type='text'
-									id='myInput'
-									className={classes.inputText}
-									defaultValue={imageAsUrl}
-								/>
-								<button
-									className={classes.btn}
-									type='click'
-									onClick={() => myFunction()}
-								>
-									Copy text
-								</button>
-							</div>
-						</CardContent>
-					</Paper>
+					<Footer />
 				</Grid>
 			</Grid>
 		</div>
