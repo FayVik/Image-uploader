@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: '2%',
 	},
 	status: {
-		marginTop: '4%',
+		marginTop: '1%',
 		color: '#fff',
 		background: '#219653',
 		borderRadius: '40px',
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		padding: '0 2px',
-		marginBottom: '20px',
+		marginBottom: '6px',
 	},
 	inputText: {
 		width: '82%',
@@ -278,7 +278,7 @@ function Dahboard() {
 										style={{
 											width: '100%',
 											borderRadius: '10px',
-											marginBottom: '20px',
+											marginBottom: '12px',
 											background: 'rgb(230, 230, 230)',
 										}}
 									>
