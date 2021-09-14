@@ -1,6 +1,6 @@
 # Image Uploader
 
-It was a cool project to work on. Due at first, I thought it was going to be difficult but I found it fun and I learned a lot while working on it.
+It was a cool project to work on. though at first, I thought it was going to be difficult but I found it fun and I learned a lot while working on it.
 
 # Technologies: 
 I used firebase storage as my server
